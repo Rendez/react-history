@@ -15,7 +15,10 @@
     "test": "npm run lint && karma start",
     "lint": "eslint modules"
   },
-  "files": ["umd", "cjs"],
+  "files": [
+    "umd",
+    "cjs"
+  ],
   "main": "cjs/index.js",
   "dependencies": {
     "history": "^4.5.0",
