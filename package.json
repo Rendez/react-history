@@ -1,9 +1,15 @@
 {
-  "name": "react-history",
-  "version": "0.18.2",
+  "name": "@researchgate/react-history",
+  "version": "0.19.1",
   "description": "Manage session history with React",
-  "repository": "ReactTraining/react-history",
+  "repository": "researchgate/react-history",
   "author": "Michael Jackson",
+  "contributors": [
+    {
+      "name": "Luis Merino",
+      "email": "mail@luismerino.name"
+    }
+  ],
   "license": "MIT",
   "scripts": {
     "build": "node ./scripts/build.js",
