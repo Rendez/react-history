@@ -27,7 +27,7 @@
   ],
   "main": "cjs/index.js",
   "dependencies": {
-    "history": "^4.5.0",
+    "history": "^4.10.0",
     "prop-types": "^15.6.0",
     "react-lifecycles-compat": "^3.0.4"
   },

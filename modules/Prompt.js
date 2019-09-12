@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { polyfill } from "react-lifecycles-compat"
-import { canUseDOM } from "history/DOMUtils"
+import canUseDOM from "./canUseDOM"
 import { history as historyType } from "./PropTypes"
 
 class Prompt extends React.Component {

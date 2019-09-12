@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import createHashHistory from "history/createHashHistory"
-import { canUseDOM } from "history/DOMUtils"
+import { createHashHistory } from "history"
+import canUseDOM from "./canUseDOM"
 import { history as historyType } from "./PropTypes"
 
 /**

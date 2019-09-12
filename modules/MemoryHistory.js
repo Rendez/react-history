@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import createMemoryHistory from "history/createMemoryHistory"
-import { canUseDOM } from "history/DOMUtils"
+import { createMemoryHistory } from "history"
+import canUseDOM from "./canUseDOM"
 import { history as historyType } from "./PropTypes"
 
 /**
