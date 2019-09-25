@@ -1,6 +1,6 @@
 {
   "name": "@researchgate/react-history",
-  "version": "0.19.2",
+  "version": "0.19.3",
   "description": "Manage session history with React",
   "repository": "researchgate/react-history",
   "author": "Michael Jackson",
