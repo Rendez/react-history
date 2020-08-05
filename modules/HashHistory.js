@@ -1,9 +1,8 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { createHashHistory } from "history"
-import canUseDOM from "./canUseDOM"
-import { history as historyType } from "./PropTypes"
-
+import React from "react";
+import PropTypes from "prop-types";
+import { createHashHistory } from "history";
+import canUseDOM from "./canUseDOM";
+import Context from "./Context";
 /**
  * Manages session history using window.location.hash.
  */
@@ -12,47 +11,43 @@ class HashHistory extends React.Component {
     basename: PropTypes.string,
     getUserConfirmation: PropTypes.func,
     hashType: PropTypes.oneOf(["hashbang", "noslash", "slash"]),
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired
-  }
-
-  static childContextTypes = {
-    history: historyType.isRequired
-  }
-
-  getChildContext() {
-    return { history: this.history }
-  }
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
 
-    const { basename, getUserConfirmation, hashType } = this.props
+    const { basename, getUserConfirmation, hashType } = this.props;
 
     if (canUseDOM) {
       this.history = createHashHistory({
         basename,
         getUserConfirmation,
-        hashType
-      })
+        hashType,
+      });
 
       // Do this here so we catch actions in cDM.
-      this.unlisten = this.history.listen(() => this.forceUpdate())
+      this.unlisten = this.history.listen(() => this.forceUpdate());
     } else {
-      this.history = {}
+      this.history = {};
     }
   }
 
   componentWillUnmount() {
-    this.unlisten()
+    this.unlisten();
   }
 
   render() {
-    const { children } = this.props
+    const { children } = this.props;
 
-    return typeof children === "function"
-      ? children(this.history)
-      : React.Children.only(children)
+    return (
+      <Context.Provider value={this.history}>
+        {typeof children === "function"
+          ? children(this.history)
+          : React.Children.only(children)}
+      </Context.Provider>
+    );
   }
 }
 
-export default HashHistory
+export default HashHistory;

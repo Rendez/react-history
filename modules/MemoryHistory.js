@@ -1,8 +1,8 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { createMemoryHistory } from "history"
-import canUseDOM from "./canUseDOM"
-import { history as historyType } from "./PropTypes"
+import React from "react";
+import PropTypes from "prop-types";
+import { createMemoryHistory } from "history";
+import canUseDOM from "./canUseDOM";
+import Context from "./Context";
 
 /**
  * Manages session history using in-memory storage.
@@ -13,53 +13,49 @@ class MemoryHistory extends React.Component {
     initialEntries: PropTypes.array,
     initialIndex: PropTypes.number,
     keyLength: PropTypes.number,
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired
-  }
-
-  static childContextTypes = {
-    history: historyType.isRequired
-  }
-
-  getChildContext() {
-    return { history: this.history }
-  }
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
 
     if (canUseDOM) {
       const {
         getUserConfirmation,
         initialEntries,
         initialIndex,
-        keyLength
-      } = this.props
+        keyLength,
+      } = this.props;
 
       this.history = createMemoryHistory({
         getUserConfirmation,
         initialEntries,
         initialIndex,
-        keyLength
-      })
+        keyLength,
+      });
 
       // Do this here so we catch actions in cDM.
-      this.unlisten = this.history.listen(() => this.forceUpdate())
+      this.unlisten = this.history.listen(() => this.forceUpdate());
     } else {
-      this.history = {}
+      this.history = {};
     }
   }
 
   componentWillUnmount() {
-    this.unlisten()
+    this.unlisten();
   }
 
   render() {
-    const { children } = this.props
+    const { children } = this.props;
 
-    return typeof children === "function"
-      ? children(this.history)
-      : React.Children.only(children)
+    return (
+      <Context.Provider value={this.history}>
+        {typeof children === "function"
+          ? children(this.history)
+          : React.Children.only(children)}
+      </Context.Provider>
+    );
   }
 }
 
-export default MemoryHistory
+export default MemoryHistory;

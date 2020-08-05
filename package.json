@@ -28,11 +28,10 @@
   "main": "cjs/index.js",
   "dependencies": {
     "history": "^4.10.0",
-    "prop-types": "^15.6.0",
-    "react-lifecycles-compat": "^3.0.4"
+    "prop-types": "^15.6.0"
   },
   "peerDependencies": {
-    "react": "^16.4.0"
+    "react": "^16.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -59,8 +58,8 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^3.0.2",
     "pretty-bytes": "^4.0.0",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
     "readline-sync": "^1.4.4",
     "webpack": "1.13.1",
     "webpack-dev-server": "1.16.2"
